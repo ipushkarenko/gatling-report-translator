@@ -1,3 +1,4 @@
+import glob
 import json
 from typing import List
 
@@ -58,12 +59,16 @@ def _read_json_file(file_path: str) -> dict:
         return json.load(file)
 
 
-def create_dtos_from_files(file_paths: List[str]) -> List[GatlingStatsDto]:
+def download_gtl_statistic(directory: str) -> List[GatlingStatsDto]:
+    # Create a list of all .json files in the directory
+    file_paths = glob.glob(f'{directory}/*.json')
+
+    # Create DTOs from the .json files
     dtos = []
     for file_path in file_paths:
         data_dict = _read_json_file(file_path)
         dto = _map_to_dto(data_dict)
         dtos.append(dto)
-    return dtos
 
+    return dtos
 

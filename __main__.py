@@ -1,5 +1,6 @@
-from gtl_json_adapter import create_dtos_from_files
-from single_sample_handler import create_dataframe_from_dtos
+from gtl_json_adapter import download_gtl_statistic
 
 if __name__ == '__main__':
-    create_dataframe_from_dtos(create_dtos_from_files(['stats.json']))
+    dtos = download_gtl_statistic(".")
+    df = (dtos)
+    df
