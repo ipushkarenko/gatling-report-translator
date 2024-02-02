@@ -59,9 +59,19 @@ def _read_json_file(file_path: str) -> dict:
         return json.load(file)
 
 
-def download_gtl_statistic(directory: str) -> List[GatlingStatsDto]:
-    # Create a list of all .json files in the directory
-    file_paths = glob.glob(f'{directory}/*.json')
+def download_gtl_statistic(base_directory: str, simulation_prefix: str) -> List[GatlingStatsDto]:
+    """
+    Scans each folder with a specific simulation prefix for 'stats.json' files and returns a list of DTOs.
+
+    :param base_directory: The base directory containing the simulation results.
+    :param simulation_prefix: The prefix of the simulation directories to scan for 'stats.json'.
+    :return: A list of GatlingStatsDto objects.
+    """
+    # Adjust the pattern to include the simulation_prefix
+    pattern = f'{base_directory}/{simulation_prefix}-*/js/stats.json'
+
+    # Find all matching stats.json files within the subdirectories
+    file_paths = glob.glob(pattern)
 
     # Create DTOs from the .json files
     dtos = []
@@ -71,4 +81,3 @@ def download_gtl_statistic(directory: str) -> List[GatlingStatsDto]:
         dtos.append(dto)
 
     return dtos
-
