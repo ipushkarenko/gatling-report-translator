@@ -42,6 +42,25 @@ def _map_group_stats(data: dict) -> GatlingStatsDto:
         meanNumberOfRequestsPerSecond=TimeStats(**data['meanNumberOfRequestsPerSecond'])
     )
 
+# def _map_group_stats(data: dict) -> GatlingStatsDto:
+#     # Map the GroupStats attributes
+#     return GroupStats(
+#         name=data['name'],
+#         numberOfRequests=RequestStats(**data['numberOfRequests']),
+#         minResponseTime=TimeStats(**data['minResponseTime']),
+#         maxResponseTime=TimeStats(**data['maxResponseTime']),
+#         meanResponseTime=TimeStats(**data['meanResponseTime']),
+#         standardDeviation=TimeStats(**data['standardDeviation']),
+#         percentiles1=Percentile(**data['percentiles1']),
+#         percentiles2=Percentile(**data['percentiles2']),
+#         percentiles3=Percentile(**data['percentiles3']),
+#         percentiles4=Percentile(**data['percentiles4']),
+#         group1=Group(htmlName=data['group1'].get('htmlName', 'Default HTML Name'), **data['group1']),
+#         group2=Group(htmlName=data['group2'].get('htmlName', 'Default HTML Name'), **data['group2']),
+#         group3=Group(htmlName=data['group3'].get('htmlName', 'Default HTML Name'), **data['group3']),
+#         group4=Group(htmlName=data['group4'].get('htmlName', 'Default HTML Name'), **data['group4']),
+#         meanNumberOfRequestsPerSecond=TimeStats(**data['meanNumberOfRequestsPerSecond'])
+#     )
 
 def _map_request(data: dict) -> Request:
     # Map the Request attributes
